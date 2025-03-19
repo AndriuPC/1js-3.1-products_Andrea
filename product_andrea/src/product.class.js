@@ -1,8 +1,8 @@
 // Aquí la clase Product
 
-module.exports = Product
 
-export default class Product{
+
+class Product{
     constructor(id, name, category, price, units = 0){
         this.id = id;
         this.name = name;
@@ -13,10 +13,12 @@ export default class Product{
 
     productImport(){
         let importeTotal = (this.units * this.price).toFixed(2);
-        return importeTotal;
+        return Number(importeTotal);
     }
 
     toString(){
-        return `${this.description} : (${this.units} uds.) x ${this.price.toFixed(2)} €/u = ${this.productImport()} €`;
+        return `${this.name}: ${this.units} uds. x ${this.price.toFixed(2)} €/u = ${this.productImport()} €`;
     }
 }
+
+module.exports = Product
