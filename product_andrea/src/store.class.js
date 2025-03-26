@@ -1,11 +1,13 @@
-const Category = require('./category.class');
-const Product = require('./product.class');
+//const Category = require('./category.class');
+//const Product = require('./product.class');
+import Product from './product.class';
+import Category from './category.class';
 
 // Aquí la clase Store
 
 
 
-class Store{
+export default class Store{
     constructor(id, name){
         this.id = id;
         this.name = name;
@@ -170,5 +172,3 @@ class Store{
     }
 
 }
-
-module.exports = Store

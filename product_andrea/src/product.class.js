@@ -2,7 +2,7 @@
 
 
 
-class Product{
+export default class Product{
     constructor(id, name, category, price, units = 0){
         this.id = id;
         this.name = name;
@@ -20,5 +20,3 @@ class Product{
         return `${this.name}: ${this.units} uds. x ${this.price.toFixed(2)} €/u = ${this.productImport()} €`;
     }
 }
-
-module.exports = Product
