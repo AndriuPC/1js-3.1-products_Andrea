@@ -1,7 +1,7 @@
 //const Category = require('./category.class');
 //const Product = require('./product.class');
-import Product from './product.class';
-import Category from './category.class';
+import Product from './product.class.js';
+import Category from './category.class.js';
 
 // Aquí la clase Store
 
