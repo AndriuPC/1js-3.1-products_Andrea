@@ -1,0 +1,79 @@
+{
+  "categories": [
+    {
+      "id": "6ce6",
+      "name": "Informática"
+    },
+    {
+      "id": 1,
+      "name": "Informática",
+      "description": "No hay descripción"
+    },
+    {
+      "id": 1,
+      "name": "Informática",
+      "description": "No hay descripción"
+    },
+    {
+      "id": 1,
+      "name": "Informática",
+      "description": "No hay descripción"
+    },
+    {
+      "id": 1,
+      "name": "Informática",
+      "description": "No hay descripción"
+    }
+  ],
+  "products": [
+    {
+      "id": "2",
+      "name": "Silla de ordenador",
+      "category": 1,
+      "price": 145.95,
+      "units": 4
+    },
+    {
+      "id": "3",
+      "name": "Mesa de impresora",
+      "category": 1,
+      "price": 45.95,
+      "units": 0
+    },
+    {
+      "id": "1",
+      "name": "Mesa de ordenador",
+      "category": 1,
+      "price": 125.95,
+      "units": 3
+    },
+    {
+      "id": 2,
+      "name": "TV Samsung MP45",
+      "category": 1,
+      "price": 345.95,
+      "units": 3
+    },
+    {
+      "id": 4,
+      "name": "impresora Epson LX-455",
+      "category": 1,
+      "price": 45.95,
+      "units": 0
+    },
+    {
+      "id": 5,
+      "name": "USB Kingston 16GB",
+      "category": 1,
+      "price": 5.95,
+      "units": 0
+    },
+    {
+      "id": 3,
+      "name": "Ábaco de madera",
+      "category": 1,
+      "price": 245.95,
+      "units": 45
+    }
+  ]
+}

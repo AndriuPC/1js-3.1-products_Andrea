@@ -3,6 +3,7 @@
 // Creamos un nuevo almacén con id 1
 // Antes hemos haber importado la clase Store para poder usarla
 //const Store = require('./store.class');
+import Database from './database';
 import Store from './store.class';
 const myStore = new Store(1, 'Almacén de ACME')
 

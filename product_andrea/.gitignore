@@ -27,3 +27,4 @@ dist-ssr
 package-lock.json
 dist/
 node_modules/
+*.env
