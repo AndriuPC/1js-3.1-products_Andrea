@@ -4,6 +4,7 @@
 // Antes hemos haber importado la clase Store para poder usarla
 //import Store from './model/store.class';
 import Controller from './controller/controller.class';
+import Store from './model/store.class';
 import View from './view/view.class';
 document.querySelector("#app").innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -104,8 +105,8 @@ document.querySelector("#app").innerHTML = `
 							<label for="newprod-price">Precio/u:</label>
                             <input type="number" id="newprod-price" class="form-control" required min="0.01" step="0.01">
 
-							<button type="button" class="btn-anadir"> Añadir </button>
-							<button type="button" class="btn-reset"> Reset </button>
+							<button type="submit" class="btn-anadir"> Añadir </button>
+							<button type="reset" class="btn-reset"> Reset </button>
 						</div>
 						
 
@@ -129,8 +130,8 @@ document.querySelector("#app").innerHTML = `
 							<label for="newcat-description">Descripción:</label>
                             <textarea id="newcat-description" class="form-control" required ></textarea>
 
-							<button type="button" class="btn-anadir"> Añadir </button>
-							<button type="button" class="btn-reset"> Reset </button>
+							<button type="submit" class="btn-anadir"> Añadir </button>
+							<button type="reset" class="btn-reset"> Reset </button>
 						</div>
 						
 					</fieldset>
@@ -145,8 +146,8 @@ document.querySelector("#app").innerHTML = `
 							<label for="delcat-id">ID:</label>
 							<input type="text" class="form-control" required>
 
-							<button type="button" class="btn-eliminar"> Eliminar </button>
-							<button type="button" class="btn-reset"> Reset </button>
+							<button type="submit" class="btn-eliminar"> Eliminar </button>
+							<button type="reset" class="btn-reset"> Reset </button>
 						</div>
 					</fieldset>
 				</form>
@@ -167,6 +168,7 @@ document.querySelector("#app").innerHTML = `
     document.addEventListener("DOMContentLoaded", () => {
         const myController = new Controller();
 		const myView= new View();
+		const store = new Store();
         myController.init();
 
 });

@@ -1,3 +1,4 @@
+import Category from "../model/category.class";
 
 export default class View{
 
@@ -24,6 +25,19 @@ export default class View{
 
 	})
 
+    }
+
+
+    fillCategories(categories){
+        this.categorySelect = document.getElementById('newprod-category');
+        this.categorySelect.innerHTML = '<option value="">-- Selecciona categoría --</option>';
+
+        categories.array.forEach(element => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            this.categorySelect.appendChild(option);
+        });
     }
 
      // función manejadora del formulario 'new-cat'
@@ -66,13 +80,46 @@ export default class View{
     }
 
 
+    updateProductList(products){
+        console.log('Productos actualizados: ' , products);
+    }
+
+    updateCategoryList(categories){
+        console.log('Las categorias se han actualizado: ' , categories);
+    }
+
+
     renderNewProduct(prod){
         // código para añadir a la tabla el producto pasado añadiendo una nueva fila
         const DOMproduct = document.createElement('tr');
         DOMproduct.innerHTML =`
         <td>${prod.id}</td>
-        <td>${prod.name}</td>`;
+        <td>${prod.name}</td>
+        <td>${prod.category}</td>
+        <td>${prod.units}</td>
+        <td>${prod.price}</td>
+        `;
         this.productsList.appendChild(DOMproduct);
+    }
+
+    renderNewCategory(category){
+        // código para añadir a la tabla el producto pasado añadiendo una nueva fila
+        const DOMcategory = document.createElement('tr');
+        DOMproduct.innerHTML =`
+        <td>${category.id}</td>
+        <td>${category.name}</td>
+        <td>${category.category}</td>
+        <td>${category.units}</td>
+        <td>${category.price}</td>
+        `;
+        this.productsList.appendChild(DOMcategory);
+    }
+
+
+    showMessage(message){
+        const DOMmessage = document.createElement('div');
+        DOMmessage.textContent = message;
+        this.message.appendChild(DOMmessage);
     }
 
 }
