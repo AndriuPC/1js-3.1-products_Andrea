@@ -9,7 +9,8 @@ document.querySelector("#app").innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<span class="navbar-brand" href="#">Almacén ACME</span>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<!-- Comentamos la linia del collapse navbar porque si no no aparecen los links -->
+			<!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
 				<div class="navbar-nav">
 					<a class="nav-link active" data-div="div-prods" aria-current="page" href="#">Productos</a>
 					<a class="nav-link" data-div="div-cats" href="#div-cats"">Categorías</a>
@@ -50,8 +51,8 @@ document.querySelector("#app").innerHTML = `
 					</tbody>
 					<tfoot>
 						<th colspan="5">Importe total del almacén:</th>
-						<th id="prod-total">3588.30 €</th>
-						<th></th>
+						<!-- <th id="prod-total">3588.30 €</th>
+						<th></th> -->
 					</tfoot>
 				</table>
 			</div>
@@ -90,18 +91,18 @@ document.querySelector("#app").innerHTML = `
 							<input type="text" id="newprod-id" class="form-control" disabled>
 
                             <label for="newprod-name">Nombre:</label>
-                            <input type="text" id="newprod-name" class="form-control">
+                            <input type="text" id="newprod-name" class="form-control" required>
 
                             <label for="newprod-category">Categoría:</label>
-                            <select id="category" name="category" class="form-control">
+                            <select id="newprod-category" name="category" class="form-control" required>
 								<option value="">-- Selecciona categoría --</option>
 							</select>
 							
 							<label for="newprod-units">Unidades:</label>
-                            <input type="text" id="newprod-units" class="form-control">
+                            <input type="number" id="newprod-units" class="form-control" required min="1" step="1">
 
 							<label for="newprod-price">Precio/u:</label>
-                            <input type="text" id="newprod-price" class="form-control">
+                            <input type="number" id="newprod-price" class="form-control" required min="0.01" step="0.01">
 
 							<button type="button" class="btn-anadir"> Añadir </button>
 							<button type="button" class="btn-reset"> Reset </button>
@@ -123,10 +124,10 @@ document.querySelector("#app").innerHTML = `
 							<input type="text" class="form-control" disabled>
 
 							<label for="newcat-name">Nombre:</label>
-                            <input type="text" id="newcat-name" class="form-control">
+                            <input type="text" id="newcat-name" class="form-control" required>
 
 							<label for="newcat-description">Descripción:</label>
-                            <textarea id="newcat-description" class="form-control"></textarea>
+                            <textarea id="newcat-description" class="form-control" required ></textarea>
 
 							<button type="button" class="btn-anadir"> Añadir </button>
 							<button type="button" class="btn-reset"> Reset </button>
@@ -142,7 +143,7 @@ document.querySelector("#app").innerHTML = `
                         <!-- Aquí los inputs y botones del form -->
 						<div class="form-group">
 							<label for="delcat-id">ID:</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" required>
 
 							<button type="button" class="btn-eliminar"> Eliminar </button>
 							<button type="button" class="btn-reset"> Reset </button>
