@@ -88,6 +88,23 @@ document.querySelector("#app").innerHTML = `
 						<div class="form-group">
 							<label for="newprod-id">ID:</label>
 							<input type="text" id="newprod-id" class="form-control" disabled>
+
+                            <label for="newprod-name">Nombre:</label>
+                            <input type="text" id="newprod-name" class="form-control">
+
+                            <label for="newprod-category">Categoría:</label>
+                            <select id="category" name="category" class="form-control">
+								<option value="">-- Selecciona categoría --</option>
+							</select>
+							
+							<label for="newprod-units">Unidades:</label>
+                            <input type="text" id="newprod-units" class="form-control">
+
+							<label for="newprod-price">Precio/u:</label>
+                            <input type="text" id="newprod-price" class="form-control">
+
+							<button type="button" class="btn-anadir"> Añadir </button>
+							<button type="button" class="btn-reset"> Reset </button>
 						</div>
 						
 
@@ -104,6 +121,15 @@ document.querySelector("#app").innerHTML = `
 						<div class="form-group">
 							<label for="newcat-id">ID:</label>
 							<input type="text" class="form-control" disabled>
+
+							<label for="newcat-name">Nombre:</label>
+                            <input type="text" id="newcat-name" class="form-control">
+
+							<label for="newcat-description">Descripción:</label>
+                            <textarea id="newcat-description" class="form-control"></textarea>
+
+							<button type="button" class="btn-anadir"> Añadir </button>
+							<button type="button" class="btn-reset"> Reset </button>
 						</div>
 						
 					</fieldset>
@@ -113,10 +139,14 @@ document.querySelector("#app").innerHTML = `
 				<form id="del-cat">
 					<fieldset>
 						<legend class="bg-dark text-white text-center">Eliminar categoría</legend>
-						
+                        <!-- Aquí los inputs y botones del form -->
+						<div class="form-group">
+							<label for="delcat-id">ID:</label>
+							<input type="text" class="form-control">
 
-                            <!-- Aquí los inputs y botones del form -->
-						
+							<button type="button" class="btn-eliminar"> Eliminar </button>
+							<button type="button" class="btn-reset"> Reset </button>
+						</div>
 					</fieldset>
 				</form>
 			</div>
