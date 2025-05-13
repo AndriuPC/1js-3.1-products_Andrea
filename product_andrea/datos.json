@@ -3,26 +3,6 @@
     {
       "id": "6ce6",
       "name": "Informática"
-    },
-    {
-      "id": 1,
-      "name": "Informática",
-      "description": "No hay descripción"
-    },
-    {
-      "id": 1,
-      "name": "Informática",
-      "description": "No hay descripción"
-    },
-    {
-      "id": 1,
-      "name": "Informática",
-      "description": "No hay descripción"
-    },
-    {
-      "id": 1,
-      "name": "Informática",
-      "description": "No hay descripción"
     }
   ],
   "products": [
@@ -48,28 +28,28 @@
       "units": 3
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "TV Samsung MP45",
       "category": 1,
       "price": 345.95,
       "units": 3
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "impresora Epson LX-455",
       "category": 1,
       "price": 45.95,
       "units": 0
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "USB Kingston 16GB",
       "category": 1,
       "price": 5.95,
       "units": 0
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Ábaco de madera",
       "category": 1,
       "price": 245.95,

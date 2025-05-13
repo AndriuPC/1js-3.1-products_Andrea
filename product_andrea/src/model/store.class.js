@@ -21,6 +21,7 @@ export default class Store {
 
     async init() {
         this.categories = await this.loadCategories();
+        this.products = await this.loadProducts();
     }
 
     async loadCategories() {
@@ -38,6 +39,29 @@ export default class Store {
 
             const datos = await response.json();
             console.log('Categorias recibidas:', datos);
+            return datos;
+
+        } catch (err) {
+            alert('Error en la petición HTTP: ' + err.message);
+            return []; // en caso de error, devolvés array vacío
+        }
+    }
+
+    async loadProducts() {
+        try {
+            const response = await fetch(SERVER + '/products', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error ${response.status} de la BBDD: ${response.statusText}`);
+            }
+
+            const datos = await response.json();
+            console.log('Productos recibidas:', datos);
             return datos;
 
         } catch (err) {
@@ -193,7 +217,7 @@ export default class Store {
             throw new Error(`Categoria con ID ${id} no encontrada.`);
         }
 
-        let hayProductos = this.products.some(producto => producto.category === categories[categoriaIndex].id);
+        let hayProductos = this.products.some(producto => producto.category === this.categories[categoriaIndex].id);
 
         if (hayProductos) {
             throw new Error(`No se puede eliminar la categoría con ID ${id}`);

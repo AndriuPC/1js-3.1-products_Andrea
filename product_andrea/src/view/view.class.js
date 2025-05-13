@@ -1,8 +1,11 @@
-import Category from "../model/category.class";
 
 export default class View{
 
-    
+    init({categories, products}){
+        this.updateCategoryList(categories);
+        this.updateProductList(products);
+    }
+
     // función manejadora del formulario 'new-prod'
 
     setProductSubmitHandler(callback){
@@ -13,14 +16,14 @@ export default class View{
 
 
 		    // a continuación recoge los datos del formulario y los guarda en un objeto
-
-        const id = document.getElementById('newprod-id').value;
-        const name = document.getElementById('newprod-name').value;
-        const category = document.getElementById('newprod-category').value;
-        const units = document.getElementById('newprod-units').value;
-        const price = document.getElementById('newprod-price').value;
-        
-		callback(payload)  
+        let payload = {
+            // id: document.getElementById('newprod-id').value, NO recibo el id
+            name: document.getElementById('newprod-name').value,
+            category: document.getElementById('newprod-category').value,
+            units: document.getElementById('newprod-units').value,
+            price: document.getElementById('newprod-price').value
+        }
+		callback(payload);  
 
 
 	})
@@ -28,19 +31,7 @@ export default class View{
     }
 
 
-    fillCategories(categories){
-        this.categorySelect = document.getElementById('newprod-category');
-        this.categorySelect.innerHTML = '<option value="">-- Selecciona categoría --</option>';
-
-        categories.array.forEach(element => {
-            const option = document.createElement('option');
-            option.value = category.id;
-            option.textContent = category.name;
-            this.categorySelect.appendChild(option);
-        });
-    }
-
-     // función manejadora del formulario 'new-cat'
+         // función manejadora del formulario 'new-cat'
 
     setCategorySubmitHandler(callback){
 
@@ -49,11 +40,12 @@ export default class View{
 		event.preventDefault()
 
 	        // a continuación recoge los datos del formulario y los guarda en un objeto
-
-            const id = document.getElementById('newcat-id').value;
-            const name = document.getElementById('newcat-name').value;
-            const description = document.getElementById('newcat-description').value;
-
+            let payload = {
+               // id: document.getElementById('newcat-id').value,
+                name: document.getElementById('newcat-name').value,
+                description: document.getElementById('newcat-description').value
+            }
+            
             callback(payload)
 
 
@@ -71,21 +63,38 @@ export default class View{
 
 	        // a continuación recoge del formulario la id de la categoría a borrar
 
-        const id = document.getElementById(delcat-id).value;
+        let id = document.getElementById("delcat-id").value;
 
-		callback(payload) 
+		callback(id);
 
 	})
 
     }
 
+    fillCategories(categories){
+        this.categorySelect = document.getElementById('newprod-category');
+        this.categorySelect.innerHTML = '<option value="">-- Selecciona categoría --</option>';
+
+        categories.forEach(category => {
+            let option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            this.categorySelect.appendChild(option);
+        });
+    }
+
 
     updateProductList(products){
         console.log('Productos actualizados: ' , products);
+        document.querySelector("#div-prods tbody").innerHTML='';
+        products.forEach(prod => this.renderNewProduct(prod));
     }
 
     updateCategoryList(categories){
         console.log('Las categorias se han actualizado: ' , categories);
+        document.querySelector("#div-cats tbody").innerHTML='';
+        categories.forEach(cat => this.renderNewCategory(cat));
+        this.fillCategories(categories);
     }
 
 
@@ -97,29 +106,34 @@ export default class View{
         <td>${prod.name}</td>
         <td>${prod.category}</td>
         <td>${prod.units}</td>
-        <td>${prod.price}</td>
+        <td>${prod.price.toFixed(2)}</td>
+        <td>${(prod.units * prod.price).toFixed(2)} €</td>
         `;
-        this.productsList.appendChild(DOMproduct);
+
+        document.querySelector("#div-prods tbody").appendChild(DOMproduct);
     }
 
     renderNewCategory(category){
         // código para añadir a la tabla el producto pasado añadiendo una nueva fila
         const DOMcategory = document.createElement('tr');
-        DOMproduct.innerHTML =`
+        DOMcategory.innerHTML =`
         <td>${category.id}</td>
         <td>${category.name}</td>
-        <td>${category.category}</td>
-        <td>${category.units}</td>
-        <td>${category.price}</td>
+        <td>${category.description}</td>
         `;
-        this.productsList.appendChild(DOMcategory);
+
+        document.querySelector("#div-cats tbody").appendChild(DOMcategory);
     }
 
 
     showMessage(message){
         const DOMmessage = document.createElement('div');
         DOMmessage.textContent = message;
-        this.message.appendChild(DOMmessage);
+        document.getElementById("messages").appendChild(DOMmessage);
+
+        setTimeout(() => {
+            document.getElementById("messages").removeChild(DOMmessage);
+        }, 3000);
     }
 
 }

@@ -144,7 +144,7 @@ document.querySelector("#app").innerHTML = `
                         <!-- Aquí los inputs y botones del form -->
 						<div class="form-group">
 							<label for="delcat-id">ID:</label>
-							<input type="text" class="form-control" required>
+							<input type="text" id="delcat-id" class="form-control" required>
 
 							<button type="submit" class="btn-eliminar"> Eliminar </button>
 							<button type="reset" class="btn-reset"> Reset </button>
@@ -165,9 +165,10 @@ document.querySelector("#app").innerHTML = `
     
 
 	<footer><small>Diseño Web en Entorno Cliente - Andrea Pérez</small></footer>`;
+	
     document.addEventListener("DOMContentLoaded", () => {
         const myController = new Controller();
-		const myView= new View();
+		const myView = new View();
 		const store = new Store();
         myController.init();
 

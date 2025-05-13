@@ -10,9 +10,14 @@ export default class Controller{
         this.view = new View();
     }
 
-    init(){
-        this.store.init();
-        this.view.init();
+    async init() {
+
+        await this.store.init();
+
+        this.view.init({
+            categories: this.store.categories,
+            products: this.store.products
+        });
 
         this.view.setProductSubmitHandler(this.handleSubmitProduct.bind(this));
         this.view.setCategorySubmitHandler(this.handleSubmitCategory.bind(this));
