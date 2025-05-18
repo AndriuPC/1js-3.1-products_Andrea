@@ -20,8 +20,8 @@ export default class View{
             // id: document.getElementById('newprod-id').value, NO recibo el id
             name: document.getElementById('newprod-name').value,
             category: document.getElementById('newprod-category').value,
-            units: document.getElementById('newprod-units').value,
-            price: document.getElementById('newprod-price').value
+            units: parseInt(document.getElementById('newprod-units').value),
+            price: parseFloat(document.getElementById('newprod-price').value)
         }
 		callback(payload);  
 
