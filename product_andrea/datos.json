@@ -3,6 +3,11 @@
     {
       "id": "6ce6",
       "name": "Informática"
+    },
+    {
+      "id": 1,
+      "name": "Magic",
+      "description": "cartas de magic"
     }
   ],
   "products": [
@@ -54,6 +59,13 @@
       "category": 1,
       "price": 245.95,
       "units": 45
+    },
+    {
+      "id": "51",
+      "name": "cartas magic",
+      "category": "6ce6",
+      "price": 0.51,
+      "units": 5
     }
   ]
 }

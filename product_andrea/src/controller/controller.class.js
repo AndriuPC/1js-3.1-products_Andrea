@@ -43,7 +43,7 @@ export default class Controller{
     handleSubmitCategory(payload){
         try{
 
-            const success = this.store.addCategory(payload);
+            const success = this.store.addCategory(payload.name, payload.description);
 
             if(success){
                 this.view.updateCategoryList(this.store.categories);
