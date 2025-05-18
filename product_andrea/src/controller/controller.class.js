@@ -30,7 +30,7 @@ export default class Controller{
             const success = this.store.addProduct(payload);
 
             if(success){
-                this.view.updateProductList(this.store.addProduct);
+                this.view.updateProductList(this.store.products);
             } else {
                 this.view.showMessage('Error al añadir el producto');
             }
@@ -46,7 +46,7 @@ export default class Controller{
             const success = this.store.addCategory(payload);
 
             if(success){
-                this.view.updateCategoryList(this.store.addCategory);
+                this.view.updateCategoryList(this.store.categories);
             } else {
                 this.view.showMessage('Error al añadir la categoría');
             }
