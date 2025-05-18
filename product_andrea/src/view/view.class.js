@@ -108,6 +108,26 @@ export default class View{
         <td>${prod.units}</td>
         <td>${prod.price.toFixed(2)}</td>
         <td>${(prod.units * prod.price).toFixed(2)} €</td>
+        <td>
+			<button class="btn btn-secondary">
+				<span class="material-icons">arrow_drop_up</span>
+			</button>
+		</td>
+        <td>
+			<button class="btn btn-secondary">
+				<span class="material-icons">arrow_drop_down</span>
+			</button>
+		</td>
+        <td>
+			<button class="btn btn-secondary">
+				<span class="material-icons">edit</span>
+			</button>
+		</td>
+        <td>
+			<button class="btn btn-secondary">
+				<span class="material-icons">delete</span>
+			</button>
+		</td>
         `;
 
         document.querySelector("#div-prods tbody").appendChild(DOMproduct);
