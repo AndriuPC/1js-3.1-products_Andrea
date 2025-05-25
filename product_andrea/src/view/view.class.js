@@ -1,9 +1,9 @@
 
 export default class View{
 
-    init({categories, products}){
-        this.updateCategoryList(categories);
-        this.updateProductList(products);
+    init(store){
+        this.updateCategoryList(store.categories);
+        this.updateProductList(store);
     }
 
     // función manejadora del formulario 'new-prod'
@@ -31,7 +31,46 @@ export default class View{
     }
 
 
-         // función manejadora del formulario 'new-cat'
+    // función manejadora de los botones subir y bajar unidades
+
+    setProductUpdateUnitstHandler(callback) {
+
+        const buttons = Array.from(document.getElementsByClassName('btn-subirUnits'));
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (event) => {
+
+                event.preventDefault();
+
+                console.log(this.products);
+
+                let productId = event.currentTarget.id.split('-')[1];
+                callback(productId);
+            })
+        })
+
+    }
+
+
+    setProductUpdateUnitsBajartHandler(callback) {
+
+        const buttons = Array.from(document.getElementsByClassName('btn-bajarUnits'));
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (event) => {
+
+                event.preventDefault();
+
+                console.log(this.products);
+
+                let productId = event.currentTarget.id.split('-')[1];
+                callback(productId);
+            })
+        })
+
+    }
+
+    // función manejadora del formulario 'new-cat'
 
     setCategorySubmitHandler(callback){
 
@@ -84,11 +123,15 @@ export default class View{
     }
 
 
-    updateProductList(products){
+    updateProductList(store){
+        console.log(store);
+        let products = store.products;
         console.log('Productos actualizados: ' , products);
         document.querySelector("#div-prods tbody").innerHTML='';
         products.forEach(prod => this.renderNewProduct(prod));
+        document.querySelector("#prod-total").innerHTML=store.totalImport() + '€';
     }
+
 
     updateCategoryList(categories){
         console.log('Las categorias se han actualizado: ' , categories);
@@ -102,29 +145,29 @@ export default class View{
         // código para añadir a la tabla el producto pasado añadiendo una nueva fila
         const DOMproduct = document.createElement('tr');
         DOMproduct.innerHTML =`
-        <td>${prod.id}</td>
-        <td>${prod.name}</td>
-        <td>${prod.category}</td>
-        <td>${prod.units}</td>
-        <td>${prod.price.toFixed(2)}</td>
-        <td>${(prod.units * prod.price).toFixed(2)} €</td>
+        <td class="prod-id-${prod.id}" >${prod.id}</td>
+        <td class="prod-name-${prod.id}" >${prod.name}</td>
+        <td class="prod-category-${prod.id}" >${prod.category}</td>
+        <td class="prod-units-${prod.id}" >${prod.units}</td>
+        <td class="prod-price-${prod.id}" >${prod.price.toFixed(2)}</td>
+        <td class="prod-units-${prod.id}" >${(prod.units * prod.price).toFixed(2)} €</td>
         <td>
-			<button class="btn btn-secondary">
+			<button id="subirUnits-${prod.id}" class="btn btn-secondary btn-subirUnits">
 				<span class="material-icons">arrow_drop_up</span>
 			</button>
 		</td>
         <td>
-			<button class="btn btn-secondary">
+			<button id="bajarUnits-${prod.id}" class="btn btn-secondary btn-bajarUnits" ${(prod.units <= 0) ? "disabled" : ""}>
 				<span class="material-icons">arrow_drop_down</span>
 			</button>
 		</td>
         <td>
-			<button class="btn btn-secondary">
+			<button class="btn btn-secondary btn-edit">
 				<span class="material-icons">edit</span>
 			</button>
 		</td>
         <td>
-			<button class="btn btn-secondary">
+			<button class="btn btn-secondary btn-delete">
 				<span class="material-icons">delete</span>
 			</button>
 		</td>

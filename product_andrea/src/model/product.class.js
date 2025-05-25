@@ -10,6 +10,7 @@ export default class Product{
         this.price = price;
         this.units = units;
     }
+    
 
     productImport(){
         let importeTotal = (this.units * this.price).toFixed(2);

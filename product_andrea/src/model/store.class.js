@@ -21,7 +21,7 @@ export default class Store {
 
     async init() {
         this.categories = await this.loadCategories();
-        this.products = await this.loadProducts();
+        this.products  = await this.loadProducts();
     }
 
     async loadCategories() {
@@ -274,10 +274,44 @@ export default class Store {
         return this.products.splice(productoIndex, 1)[0];
     }
 
+    updateProduct(updateProduct){
+        let productoIndex = this.products.findIndex(prod => prod.id === updateProduct.id);
+
+        if (productoIndex === -1) {
+            throw new Error(`Categoria con ID ${updateProduct.id} no encontrada.`);
+        }
+
+        fetch(SERVER + '/products/' + updateProduct.id, {
+            method: 'PUT',
+            body: JSON.stringify(updateProduct), // los datos que enviamos al servidor en el 'send'
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status} de la BBDD: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(datos => {
+                console.log(datos);
+            })
+            .catch(err => {
+                alert('Error en la petición HTTP: ' + err.message);
+            });
+
+            this.products[productoIndex] = updateProduct;
+
+        return updateProduct;
+    }
+
     totalImport() {
         let total = 0;
 
-        this.products.array.forEach(product => {
+        this.products.forEach(p => {
+            let product = new Product(p.id, p.name, p.category, p.price, p.units);
+
             total += Number(product.productImport());
         });
 

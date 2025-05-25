@@ -5,7 +5,7 @@
       "name": "Informática"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Magic",
       "description": "cartas de magic"
     }
@@ -15,57 +15,57 @@
       "id": "2",
       "name": "Silla de ordenador",
       "category": 1,
-      "price": 145.95,
-      "units": 4
+      "units": 0,
+      "price": 145.95
     },
     {
       "id": "3",
-      "name": "Mesa de impresora",
+      "name": "Silla de ordenador",
       "category": 1,
-      "price": 45.95,
-      "units": 0
-    },
-    {
-      "id": "1",
-      "name": "Mesa de ordenador",
-      "category": 1,
-      "price": 125.95,
-      "units": 3
-    },
-    {
-      "id": "2",
-      "name": "TV Samsung MP45",
-      "category": 1,
-      "price": 345.95,
-      "units": 3
+      "units": 5,
+      "price": 145.95
     },
     {
       "id": "4",
+      "name": "Silla de ordenador",
+      "category": 1,
+      "units": 8,
+      "price": 145.95
+    },
+    {
+      "id": "5",
+      "name": "Silla de ordenador",
+      "category": 1,
+      "units": 7,
+      "price": 145.95
+    },
+    {
+      "id": "6",
       "name": "impresora Epson LX-455",
       "category": 1,
       "price": 45.95,
       "units": 0
     },
     {
-      "id": "5",
+      "id": "7",
       "name": "USB Kingston 16GB",
       "category": 1,
       "price": 5.95,
       "units": 0
     },
     {
-      "id": "3",
+      "id": "8",
       "name": "Ábaco de madera",
       "category": 1,
-      "price": 245.95,
-      "units": 45
+      "units": 44,
+      "price": 245.95
     },
     {
-      "id": "51",
-      "name": "cartas magic",
-      "category": "6ce6",
-      "price": 0.51,
-      "units": 5
+      "id": "9",
+      "name": "Silla de ordenador",
+      "category": 1,
+      "units": 7,
+      "price": 145.95
     }
   ]
 }

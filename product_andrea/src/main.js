@@ -52,8 +52,8 @@ document.querySelector("#app").innerHTML = `
 					</tbody>
 					<tfoot>
 						<th colspan="5">Importe total del almacén:</th>
-						<!-- <th id="prod-total">3588.30 €</th>
-						<th></th> -->
+						<th id="prod-total"></th>
+						<th></th>
 					</tfoot>
 				</table>
 			</div>
