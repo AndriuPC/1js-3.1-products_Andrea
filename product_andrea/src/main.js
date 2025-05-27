@@ -108,10 +108,6 @@ document.querySelector("#app").innerHTML = `
 							<button type="submit" class="btn-anadir"> Añadir </button>
 							<button type="reset" class="btn-reset"> Reset </button>
 						</div>
-						
-
-
-
 					</fieldset>
 				</form>
 			</div>

@@ -19,8 +19,8 @@ export default class Controller{
         this.view.setProductSubmitHandler(this.handleSubmitProduct.bind(this));
         this.view.setCategorySubmitHandler(this.handleSubmitCategory.bind(this));
         this.view.setCategoryRemoveHandler(this.handleRemoveCategory.bind(this));
-        this.view.setProductUpdateUnitstHandler(this.handleUpdateProduct.bind(this));
-        this.view.setProductUpdateUnitsBajartHandler(this.handleUpdateProductBajar.bind(this));
+        this.loadProductsEventsListeners();
+
     }
 
     handleSubmitProduct(payload) {
@@ -69,7 +69,24 @@ export default class Controller{
         } catch(error){
             this.view.showMessage('Error: ' + error.message);
         }
+    }
 
+    handleRemoveProduct(productId){
+        try{
+
+            const success = this.store.delProduct(productId);
+
+            if(success){
+                this.view.updateProductList(this.store);
+                this.loadProductsEventsListeners();
+                
+            } else {
+                this.view.showMessage('Error al borrar el producto');
+            }
+
+        } catch(error){
+            this.view.showMessage('Error: ' + error.message);
+        }
     }
 
     handleUpdateProduct(productId) {
@@ -95,6 +112,31 @@ export default class Controller{
             }
 
         } catch(error){
+            this.view.showMessage('Error: ' + error.message);
+        }
+    }
+
+    handleShowEditProductForm(productId){
+        try{
+            let product = this.store.products.find(p => p.id == productId);
+            this.view.renderEditProduct(product,this.store.categories);
+            this.view.setProductEditHandler(this.handleEditProduct.bind(this));
+        }catch(error){
+            this.view.showMessage('Error: ' + error.message);
+        }
+    }
+
+    handleEditProduct(product){
+        try {
+            const success = this.store.updateProduct(product);
+            if(success){
+                this.view.updateProductList(this.store);
+                this.loadProductsEventsListeners();
+
+            } else {
+                this.view.showMessage('Error al añadir el producto');
+            }
+        } catch (error) {
             this.view.showMessage('Error: ' + error.message);
         }
     }
@@ -132,5 +174,7 @@ export default class Controller{
     loadProductsEventsListeners(){
         this.view.setProductUpdateUnitsBajartHandler(this.handleUpdateProductBajar.bind(this));
         this.view.setProductUpdateUnitstHandler(this.handleUpdateProduct.bind(this));
+        this.view.setProductRemoveHandler(this.handleRemoveProduct.bind(this));
+        this.view.setShowProductEditHandler(this.handleShowEditProductForm.bind(this));
     }
 }
