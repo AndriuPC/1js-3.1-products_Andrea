@@ -1,9 +1,26 @@
 
 export default class View{
+    viewActual = 'div-prods';
 
     init(store){
         this.updateCategoryList(store.categories);
         this.updateProductList(store);
+
+        this.loadNav();
+    }
+
+
+    loadNav() {
+        let navbar = document.querySelectorAll('.navbar-nav a');
+        navbar.forEach(nav => {
+
+            nav.addEventListener('click', (event) => {
+                event.preventDefault();
+                document.getElementById(event.currentTarget.dataset.div).classList.remove('div-hidden');
+                document.getElementById(this.viewActual).classList.add('div-hidden');
+                this.viewActual = event.currentTarget.dataset.div;
+            });
+        });
     }
 
     // función manejadora del formulario 'new-prod'
@@ -12,7 +29,7 @@ export default class View{
 
         document.getElementById('new-prod').addEventListener('submit', (event) => {
 
-            event.preventDefault()
+            event.preventDefault();
 
 
             // a continuación recoge los datos del formulario y los guarda en un objeto
@@ -259,6 +276,10 @@ export default class View{
         document.querySelector("#div-form-prod").innerHTML=DOMeditProduct;
         this.fillCategories(categories,'editprod-category');
         document.querySelector("#editprod-category").value = prod.category;
+
+        document.getElementById('div-form-prod').classList.remove('div-hidden');
+        document.getElementById(this.viewActual).classList.add('div-hidden');
+        this.viewActual ='div-form-prod';
     }
     renderAddProduct(categories){
         const DOMeditProduct = `
@@ -293,6 +314,9 @@ export default class View{
 
         document.querySelector("#div-form-prod").innerHTML=DOMeditProduct;
         this.fillCategories(categories,'newprod-category');
+        document.getElementById('div-prods').classList.remove('div-hidden');
+        document.getElementById(this.viewActual).classList.add('div-hidden');
+        this.viewActual ='div-prods';
     }
 
 

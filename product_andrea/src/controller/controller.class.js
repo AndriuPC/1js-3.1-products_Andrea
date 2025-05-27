@@ -132,6 +132,7 @@ export default class Controller{
             if(success){
                 this.view.updateProductList(this.store);
                 this.loadProductsEventsListeners();
+                this.view.renderAddProduct(this.store.categories);
 
             } else {
                 this.view.showMessage('Error al añadir el producto');

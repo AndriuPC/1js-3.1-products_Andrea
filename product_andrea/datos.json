@@ -8,21 +8,31 @@
       "id": "1",
       "name": "Magic",
       "description": "cartas de magic"
+    },
+    {
+      "id": "11",
+      "name": "test2",
+      "description": "es un test"
+    },
+    {
+      "id": "111",
+      "name": "hola",
+      "description": "hola"
     }
   ],
   "products": [
     {
       "id": "2",
       "name": "Silla de ordenador",
-      "category": 1,
-      "units": 0,
+      "category": "1",
+      "units": 1,
       "price": 145.95
     },
     {
       "id": "3",
       "name": "Silla de ordenador",
-      "category": 1,
-      "units": 5,
+      "category": "1",
+      "units": 8,
       "price": 145.95
     },
     {
