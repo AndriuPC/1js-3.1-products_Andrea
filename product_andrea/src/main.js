@@ -92,18 +92,22 @@ document.querySelector("#app").innerHTML = `
 							<input type="text" id="newprod-id" class="form-control" disabled>
 
                             <label for="newprod-name">Nombre:</label>
-                            <input type="text" id="newprod-name" class="form-control" required>
+                            <input type="text" id="newprod-name" class="form-control" minlength="3" maxlength="50" required>
+    						<span class="error"></span>
 
                             <label for="newprod-category">Categoría:</label>
                             <select id="newprod-category" name="category" class="form-control" required>
 								<option value="">-- Selecciona categoría --</option>
 							</select>
-							
+							<span class="error"></span>
+
 							<label for="newprod-units">Unidades:</label>
-                            <input type="number" id="newprod-units" class="form-control" required min="1" step="1">
+                            <input type="number" id="newprod-units" class="form-control" required min="0" step="1">
+							<span class="error"></span>
 
 							<label for="newprod-price">Precio/u:</label>
                             <input type="number" id="newprod-price" class="form-control" required min="0.01" step="0.01">
+							<span class="error"></span>
 
 							<button type="submit" class="btn-anadir"> Añadir </button>
 							<button type="reset" class="btn-reset"> Reset </button>
@@ -112,7 +116,7 @@ document.querySelector("#app").innerHTML = `
 				</form>
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-4 div-hidden" id="div-form-cat">
-				<form id="new-cat">
+				<form id="new-cat" novalidate>
 					<fieldset>
 						<legend class="bg-dark text-white text-center">Añadir categoría</legend>
 						<!-- Aquí los inputs y botones del form -->
@@ -121,10 +125,12 @@ document.querySelector("#app").innerHTML = `
 							<input type="text" class="form-control" disabled>
 
 							<label for="newcat-name">Nombre:</label>
-                            <input type="text" id="newcat-name" class="form-control" required>
+                            <input type="text" id="newcat-name" class="form-control" minlength="3" maxlength="50" required>
+							<span class="error"></span>
 
 							<label for="newcat-description">Descripción:</label>
-                            <textarea id="newcat-description" class="form-control" required ></textarea>
+                            <textarea id="newcat-description" class="form-control" minlength="5" maxlength="150" required ></textarea>
+							<span class="error"></span>
 
 							<button type="submit" class="btn-anadir"> Añadir </button>
 							<button type="reset" class="btn-reset"> Reset </button>
@@ -134,7 +140,7 @@ document.querySelector("#app").innerHTML = `
 				</form>
 			</div>
 			<div class="col-sm-6 col-md-4 col-lg-4 div-hidden">
-				<form id="del-cat">
+				<form id="del-cat" novalidate>
 					<fieldset>
 						<legend class="bg-dark text-white text-center">Eliminar categoría</legend>
                         <!-- Aquí los inputs y botones del form -->

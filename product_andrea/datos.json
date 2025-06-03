@@ -18,14 +18,24 @@
       "id": "111",
       "name": "hola",
       "description": "hola"
+    },
+    {
+      "id": "1111",
+      "name": "Pepito",
+      "description": "Cosas de pepito"
+    },
+    {
+      "id": "11111",
+      "name": "asdas",
+      "description": "asdas"
     }
   ],
   "products": [
     {
       "id": "2",
       "name": "Silla de ordenador",
-      "category": "1",
-      "units": 1,
+      "category": "",
+      "units": null,
       "price": 145.95
     },
     {
@@ -62,6 +72,13 @@
       "category": 1,
       "units": 7,
       "price": 145.95
+    },
+    {
+      "id": "91",
+      "name": "asdasd",
+      "category": "1",
+      "price": 1,
+      "units": 1
     }
   ]
 }

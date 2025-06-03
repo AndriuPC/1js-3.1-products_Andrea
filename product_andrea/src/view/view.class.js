@@ -30,19 +30,34 @@ export default class View{
         document.getElementById('new-prod').addEventListener('submit', (event) => {
 
             event.preventDefault();
+            const nombre = document.getElementById('newprod-name');
+            const nombreError = document.querySelector('#newprod-name + span.error');
 
+            const categoria = document.getElementById('newprod-category');
+            const categoryError = document.querySelector('#newprod-category + span.error');
 
-            // a continuación recoge los datos del formulario y los guarda en un objeto
-            let payload = {
-                // id: document.getElementById('newprod-id').value, NO recibo el id
-                name: document.getElementById('newprod-name').value,
-                category: document.getElementById('newprod-category').value,
-                units: parseInt(document.getElementById('newprod-units').value),
-                price: parseFloat(document.getElementById('newprod-price').value)
+            const units = document.getElementById('newprod-units');
+            const unitsError = document.querySelector('#newprod-units + span.error');
+
+            const price = document.getElementById('newprod-price');
+            const priceError = document.querySelector('#newprod-price + span.error');
+
+            if (document.getElementById('new-cat').checkValidity()) {
+                // a continuación recoge los datos del formulario y los guarda en un objeto
+                let payload = {
+                    // id: document.getElementById('newprod-id').value, NO recibo el id
+                    name: nombre.value,
+                    category: categoria.value,
+                    units: parseInt(units.value),
+                    price: parseFloat(price.value)
+                }
+                callback(payload);
+            } else {
+                nombreError.textContent = this.customErrorValidationMessage(nombre);
+                categoryError.textContent = this.customErrorValidationMessage(categoria);
+                unitsError.textContent = this.customErrorValidationMessage(units);
+                priceError.textContent = this.customErrorValidationMessage(price);
             }
-            callback(payload);
-
-
         })
 
     }
@@ -104,41 +119,67 @@ export default class View{
         document.getElementById('edit-prod').addEventListener('submit', (event) => {
 
             event.preventDefault()
-    
-    
+            const nombre = document.getElementById('editprod-name');
+            const nombreError = document.querySelector('#editprod-name + span.error');
+
+            const categoria = document.getElementById('editprod-category');
+            const categoryError = document.querySelector('#editprod-category + span.error');
+
+            const units = document.getElementById('editprod-units');
+            const unitsError = document.querySelector('#editprod-units + span.error');
+
+            const price = document.getElementById('editprod-price');
+            const priceError = document.querySelector('#editprod-price + span.error');
+
+            if (document.getElementById('new-cat').checkValidity()) {
                 // a continuación recoge los datos del formulario y los guarda en un objeto
-            let payload = {
-                id: document.getElementById('editprod-id').value,
-                name: document.getElementById('editprod-name').value,
-                category: document.getElementById('editprod-category').value,
-                units: parseInt(document.getElementById('editprod-units').value),
-                price: parseFloat(document.getElementById('editprod-price').value)
+                let payload = {
+                    id: document.getElementById('editprod-id').value,
+                    name: nombre.value,
+                    category: categoria.value,
+                    units: parseInt(units.value),
+                    price: parseFloat(price.value)
+                }
+                callback(payload);
+            }else {
+                nombreError.textContent = this.customErrorValidationMessage(nombre);
+                categoryError.textContent = this.customErrorValidationMessage(categoria);
+                unitsError.textContent = this.customErrorValidationMessage(units);
+                priceError.textContent = this.customErrorValidationMessage(price);
             }
-            callback(payload);  
-    
-    
         })
     }
 
     // función manejadora del formulario 'new-cat'
 
-    setCategorySubmitHandler(callback){
+    setCategorySubmitHandler(callback) {
 
-	document.getElementById('new-cat').addEventListener('submit', (event) => {
+        document.getElementById('new-cat').addEventListener('submit', (event) => {
+            event.preventDefault()
+            const nombre = document.getElementById('newcat-name');
+            const nombreError = document.querySelector('#newcat-name + span.error');
 
-		event.preventDefault()
+            const descripcion = document.getElementById('newcat-description');
+            const descripcionError = document.querySelector('#newcat-description + span.error');
 
-	        // a continuación recoge los datos del formulario y los guarda en un objeto
-            let payload = {
-               // id: document.getElementById('newcat-id').value,
-                name: document.getElementById('newcat-name').value,
-                description: document.getElementById('newcat-description').value
+            if (document.getElementById('new-cat').checkValidity()) {
+                
+
+
+                // a continuación recoge los datos del formulario y los guarda en un objeto
+                let payload = {
+                    // id: document.getElementById('newcat-id').value,
+                    name: nombre.value,
+                    description: descripcion.value
+                }
+
+                callback(payload)
+            } else {
+                nombreError.textContent = this.customErrorValidationMessage(nombre);
+                descripcionError.textContent = this.customErrorValidationMessage(descripcion);
             }
-            
-            callback(payload)
 
-
-	})
+        })
 
     }
 
@@ -254,17 +295,21 @@ export default class View{
 
                             <label for="editprod-name">Nombre:</label>
                             <input type="text" id="editprod-name" class="form-control" value="${prod.name}" required>
+                            <span class="error"></span>
 
                             <label for="editprod-category">Categoría:</label>
                             <select id="editprod-category" name="category" class="form-control" value="${prod.category}" required>
 								<option value="">-- Selecciona categoría --</option>
 							</select>
-							
+							<span class="error"></span>
+
 							<label for="editprod-units">Unidades:</label>
-                            <input type="number" id="editprod-units" class="form-control" value="${prod.units}" required min="1" step="1">
+                            <input type="number" id="editprod-units" class="form-control" value="${prod.units}" required min="0" step="1">
+                            <span class="error"></span>
 
 							<label for="editprod-price">Precio/u:</label>
                             <input type="number" id="editprod-price" class="form-control" value="${prod.price.toFixed(2)}" required min="0.01" step="0.01">
+                            <span class="error"></span>
 
 							<button type="submit" class="btn-cambiar"> Cambiar </button>
 							<button type="reset" class="btn-reset"> Reset </button>
@@ -293,17 +338,21 @@ export default class View{
 
                             <label for="newprod-name">Nombre:</label>
                             <input type="text" id="newprod-name" class="form-control" required>
+                            <span class="error"></span>
 
                             <label for="newprod-category">Categoría:</label>
                             <select id="newprod-category" name="category" class="form-control" required>
 								<option value="">-- Selecciona categoría --</option>
 							</select>
+                            <span class="error"></span>
 							
 							<label for="newprod-units">Unidades:</label>
-                            <input type="number" id="newprod-units" class="form-control" required min="1" step="1">
+                            <input type="number" id="newprod-units" class="form-control" required min="0" step="1">
+                            <span class="error"></span>
 
 							<label for="newprod-price">Precio/u:</label>
                             <input type="number" id="newprod-price" class="form-control" required min="0.01" step="0.01">
+                            <span class="error"></span>
 
 							<button type="submit" class="btn-anadir"> Añadir </button>
 							<button type="reset" class="btn-reset"> Reset </button>
@@ -341,6 +390,26 @@ export default class View{
         setTimeout(() => {
             document.getElementById("messages").removeChild(DOMmessage);
         }, 3000);
+    }
+
+    customErrorValidationMessage(input) {
+        if (input.checkValidity()) {
+            return ''
+        }
+        if (input.validity.valueMissing) {
+            return 'Este campo es obligatorio'
+        }
+        if (input.validity.tooShort) {
+            return `Debe tener al menos ${input.minLength} caracteres`
+        }
+        if(input.validity.tooLong){
+            return `Debe tener como máximo ${input.maxLength} caracteres`
+        }
+        if(input.validity.rangeUnderflow){
+            return `Debe ser un número igual a  ${input.min} o mayor`
+        }
+        // Y seguiremos comprobando cada atributo que hayamos usado en el HTML
+        return 'Error en el campo'   // por si se nos ha olvidado comprobar algo
     }
 
 }
