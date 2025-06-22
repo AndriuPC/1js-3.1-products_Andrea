@@ -11,9 +11,15 @@ import { useTodoStore } from '@/stores/todoStore'
 
 const todoStore = useTodoStore()
 
-function deleteAll() {
+async function deleteAll() {
     if (confirm('¿Seguro que quieres eliminar todas las tareas?')) {
-        todoStore.clearTodos()
+        try {
+            await todoStore.clearTodos()
+            alert('Todas las tareas han sido borradas.')
+        } catch (error) {
+            alert('Error al borrar las tareas.')
+            console.error(error)
+        }
     }
 }
 </script>

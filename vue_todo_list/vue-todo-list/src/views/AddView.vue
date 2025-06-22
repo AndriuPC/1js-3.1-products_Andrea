@@ -16,21 +16,23 @@ const newTodoText = ref('')
 const todoStore = useTodoStore()
 const router = useRouter()
 
-function addTodo() {
-    const text = newTodoText.value.trim()
-    if (text === '') {
+async function addTodo() {
+    const title = newTodoText.value.trim()
+    if (title === '') {
         alert('Por favor, escribe un título para la tarea.')
         return
     }
 
-    todoStore.addTodo({
-        id: Date.now(), // o usar otra forma de generar id único
-        text,
-        done: false
-    })
-
-    newTodoText.value = ''
-
-    router.push('/') // redirige a la página principal (ajusta la ruta si es necesario)
+    try {
+        await todoStore.addTodo({
+            title,
+            done: false
+        })
+        newTodoText.value = ''
+        router.push('/') // redirige a la página principal
+    } catch (error) {
+        alert('Error al añadir la tarea.')
+        console.error(error)
+    }
 }
 </script>

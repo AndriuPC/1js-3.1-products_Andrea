@@ -9,7 +9,7 @@
         v-for="(todo, index) in todos"
         :key="index"
         :todo="todo"
-        @toggle="toggleTodo(index)"
+        @toggle="toggleDone(index)"
         @delete="deleteTodo(index)"
       />
     </ul>
@@ -17,9 +17,23 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import TodoItem from '@/components/TodoItem.vue'
-import { useTodoStore } from '@/stores/todoStore'
 
-const todoStore = useTodoStore()
-const { todos, toggleTodo, deleteTodo } = todoStore
+const todos = ref([
+  { title: 'Learn JavaScript', done: false },
+  { title: 'Learn Vue', done: false },
+  { title: 'Play around in JSFiddle', done: true },
+  { title: 'Build something awesome', done: true }
+])
+
+function toggleDone(index) {
+  todos.value[index].done = !todos.value[index].done
+}
+
+function deleteTodo(index) {
+  if (confirm('¿Estás seguro de que quieres borrar esta tarea?')) {
+    todos.value.splice(index, 1)
+  }
+}
 </script>
