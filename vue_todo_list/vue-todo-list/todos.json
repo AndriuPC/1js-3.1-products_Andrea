@@ -18,6 +18,16 @@
     {
       "id": "6aec",
       "title": "prueba",
+      "done": true
+    },
+    {
+      "id": "6508",
+      "title": "tarea vue",
+      "done": true
+    },
+    {
+      "id": "1b33",
+      "title": "hola",
       "done": false
     }
   ]
