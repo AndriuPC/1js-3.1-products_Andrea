@@ -1,3 +1,33 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import TodoItem from '@/components/TodoItem.vue'
+
+const todos = ref([])
+
+async function fetchTodos() {
+  const res = await fetch('http://localhost:3000/todos')
+  todos.value = await res.json()
+}
+
+async function toggleDone(id, currentStatus) {
+  await fetch(`http://localhost:3000/todos/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ done: !currentStatus })
+  })
+  fetchTodos()
+}
+
+async function deleteTodo(id) {
+  if (confirm('¿Estás seguro de que quieres borrar esta tarea?')) {
+    await fetch(`http://localhost:3000/todos/${id}`, { method: 'DELETE' })
+    fetchTodos()
+  }
+}
+
+onMounted(fetchTodos)
+</script>
+
 <template>
   <div>
     <h2>Lista de Tareas</h2>
@@ -6,34 +36,12 @@
 
     <ul v-else>
       <TodoItem
-        v-for="(todo, index) in todos"
-        :key="index"
+        v-for="todo in todos"
+        :key="todo.id"
         :todo="todo"
-        @toggle="toggleDone(index)"
-        @delete="deleteTodo(index)"
+        @toggle="toggleDone(todo.id, todo.done)"
+        @delete="deleteTodo(todo.id)"
       />
     </ul>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import TodoItem from '@/components/TodoItem.vue'
-
-const todos = ref([
-  { title: 'Learn JavaScript', done: false },
-  { title: 'Learn Vue', done: false },
-  { title: 'Play around in JSFiddle', done: true },
-  { title: 'Build something awesome', done: true }
-])
-
-function toggleDone(index) {
-  todos.value[index].done = !todos.value[index].done
-}
-
-function deleteTodo(index) {
-  if (confirm('¿Estás seguro de que quieres borrar esta tarea?')) {
-    todos.value.splice(index, 1)
-  }
-}
-</script>
