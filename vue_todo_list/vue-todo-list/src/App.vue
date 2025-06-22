@@ -1,9 +1,52 @@
-<script setup>
+<!-- <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-</script>
+</script> -->
 
 <template>
+  <div id="app">
+    <header>
+      <h1>Lista de Tareas</h1>
+      <nav>
+        <RouterLink to="/">Tareas</RouterLink> |
+        <RouterLink to="/add">Nueva tarea</RouterLink> |
+        <RouterLink to="/delete-all">Borrar las tareas</RouterLink> |
+        <RouterLink to="/about">Acerca de...</RouterLink>
+      </nav>
+    </header>
+
+    <main>
+      <RouterView />
+    </main>
+
+    <footer>
+      <p>Creado por Andrea Pérez</p>
+    </footer>
+  </div>
+</template>
+
+<script setup>
+  import { RouterLink, RouterView } from 'vue-router'
+</script>
+
+<style scoped>
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+nav a {
+  margin: 0 10px;
+}
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: gray;
+}
+</style>
+
+
+
+<!-- <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
@@ -82,4 +125,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
